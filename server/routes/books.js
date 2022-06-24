@@ -79,7 +79,7 @@ router.get('/edit/:id', (req, res, next) => {
      *****************/
      let id = req.params.id;
 
-    book.findById(_id, (err, itemToEdit) => {
+    book.findById(id, (err, itemToEdit) => {
         if(err)
         {
             console.log(err);
@@ -103,7 +103,7 @@ router.post('/:id', (req, res, next) => {
     /*****************
      * ADD CODE HERE *
      *****************/
-     let id = req.params.id
+     let id = req.params.id;
 
      let updatedItem = book({
          _id: req.body.id,
@@ -122,7 +122,7 @@ router.post('/:id', (req, res, next) => {
          }
          else
          {
-             // console.log(req.body);
+             //console.log(req.body);
              // refresh the book list
              res.redirect('/books');
          }
