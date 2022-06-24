@@ -98,36 +98,32 @@ router.get('/edit/:id', (req, res, next) => {
 });
 
 // POST - process the information passed from the details form and update the document
-router.post('/:id', (req, res, next) => {
+router.post("/edit/:id", (req, res, next) => {
+  
+  /*******
+   * ADD CODE HERE *
+   *******/
+  let id = req.params.id;
 
-    /*****************
-     * ADD CODE HERE *
-     *****************/
-     let id = req.params.id;
+  let updatedItem = book({
+    _id: id,
+    Title: req.body.title,
+    Description: req.body.description,
+    Price: req.body.price,
+    Author: req.body.author,
+    Genre: req.body.genre,
+  });
 
-     let updatedItem = book({
-         _id: req.body.id,
-         Title: req.body.title,
-         Description: req.body.Description,
-         Price: req.body.Price,
-         Author: req.body.Author,
-         Genre: req.body.Genre
-     });
- 
-     book.updateOne({_id: id}, updatedItem, (err) => {
-         if(err)
-         {
-             console.log(err);
-             res.end(err);
-         }
-         else
-         {
-             //console.log(req.body);
-             // refresh the book list
-             res.redirect('/books');
-         }
-     });
- 
+  book.updateOne({ _id: id }, updatedItem, (err) => {
+    if (err) {
+      console.log(err);
+      res.end(err);
+    } else {
+      //console.log(req.body);
+      // refresh the book list
+      res.redirect("/books");
+    }
+  });
 });
 
 // GET - process the delete by user id
